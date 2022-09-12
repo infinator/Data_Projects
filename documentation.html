@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentation.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="introduction">Introduction</h1>
+<h2 id="about-the-data">About the Data</h2>
+<p>The Data contains all the flights that travel nonstop between overseas locations and airports in the United States.</p>
+<p>Source :- <a href="https://data.transportation.gov/Aviation/International_Report_Departures/innc-gbgc">https://data.transportation.gov/Aviation/International_Report_Departures/innc-gbgc</a></p>
+<h1 id="exploratory-data-analysis">Exploratory Data Analysis</h1>
+<ul>
+<li>
+<p>The dataset contains monthly data so within each year we have 12 observations, one for each month.</p>
+</li>
+<li>
+<p>There are 1053 US airports in total.</p>
+</li>
+<li>
+<p>The US airports having most departures vs. the foreign airports having most arrivals:
+<img src="output.png" alt=""></p>
+</li>
+<li>
+<p>Total departures per month over time :
+<img src="output1.png" alt=""></p>
+</li>
+<li>
+<p>Scheduled vs. Charter departures per month over time :
+<img src="output2.png" alt="">
+There is a lot of irregularity in the green line graph i.e. the charter departures.</p>
+</li>
+<li>
+<p>All departures per month over time (zoomed in) :
+<img src="output3.png" alt=""></p>
+</li>
+<li>
+<p>Departures in the Pre Pandemic phase :
+<img src="output4.png" alt="">
+At the end of the pre pandemic phase, there is a sudden increase in the Charter Departures</p>
+</li>
+<li>
+<p>Departures in the Post Pandemic phase :
+<img src="output5.png" alt="">
+The number of scheduled departures dropped suddenly when the pandemic hit, but the same is not true charter departures.
+<img src="output6.png" alt=""></p>
+</li>
+</ul>
+<h1 id="analyzing-and-transforming-the-data-for-forcasting">Analyzing and Transforming the Data for Forcasting</h1>
+<h2 id="transforming-the-data-for-univariate-forecasting">Transforming the data for univariate forecasting</h2>
+<p>In order to perform the univariate forcasting, the model needs only a single feature, the one which will be forecasted, i.e., the <code>Total</code> column with date-time as the index.<br>
+<img src="ss1.png" height="200"></p>
+<p>The next thing to be done is to remove the trend from the data, i.e., make it stationary. To achieve this, the first difference is taken, which means basically taking in each data point and subtracting the data point for the month that comes prior.<br>
+<img src="output7.png" alt=""><br>
+Now the data is almost centered around 0 so there is no upwards or downwards trend but it still has the seasonality ofcourse. By this, the integrated order (<code>d</code>) is found to be 1.</p>
+<p>The next thing to be done is to determine the ACF and PACF values fot the first differenced data to get an idea of what order should the model use for the seasonal AR and seasonal MA parts.</p>
+<p>The ACF looks like this :<br>
+<img src="output8.png" alt=""><br>
+There is no significant lags until it gets close to 12. It can be said that there is 12 months lag within the data or another way to say that is 1 year lag we get some noticable behaviour in the ACF.<br>
+Therefore, based on the ACF, the model should start with a seasonal MA process with a lag of 1 year.</p>
+<p>The PACF looks like this :<br>
+<img src="output9.png" alt=""><br>
+Again there is no significant lags until it gets close to 12.<br>
+Therefore, based on the PACF, the model should start with a seasonal AR process with a lag of 1 year.</p>
+<h2 id="transforming-the-data-for-tree-based-models">Transforming the data for tree based models</h2>
+<p>With tree based models, it gets easier to predict with multiple variables (features). So for these kind of models, multivariate transformation is done.
+<img src="ss2.png" width="700"><br>
+The <code>Year</code> and <code>Month</code> variables might be removed.</p>
+<h2 id="transforming-the-data-for-neural-network-tensorflow-lstm">Transforming the data for Neural Network (Tensorflow LSTM)</h2>
+<p>A deep learning neural network like LSTM is proved to be very efficient when it comes to forecasting.  It takes an array of the variable which is to be predicted, in its scaled form.<br>
+It looks something like this :<br>
+<code>array([[0.21163885],         [0.1780303 ],         [0.24294208],         [0.21210702],         [0.21684544]], dtype=float32)</code></p>
+<h1 id="models-which-will-be-used-for-forecasting">Models which will be used for Forecasting</h1>
+<h2 id="holt-winters-method">Holt-Winter's Method</h2>
+<p>The Holt-Winters method — also known as triple exponential smoothing — is an incredibly powerful and straightforward method for time series forecasting. This method is also capable of handling both trend and seasonality.</p>
+<h3 id="components-of-holt-winters-method">Components of Holt-Winter's Method</h3>
+<p>The Holt-Winters method is referred to as triple exponential smoothing because this method is a combination of these three elements :</p>
+<ol>
+<li>Simple Exponential Smoothing (SES)</li>
+<li>Holt’s Exponential Smoothing (HES)</li>
+<li>Winter’s Exponential Smoothing (WES)</li>
+</ol>
+<h3 id="simple-exponential-smoothing">Simple Exponential Smoothing</h3>
+<p>Simple exponential smoothing makes the level of the time series an unchanging assumption. Therefore, it cannot be used to series that have seasonality, trend, or both.<br>
+It is based on this equation :
+$$
+L_t=\alpha y_t+(1-\alpha) L_{t-1}
+$$
+Where:
+$y_t$ is the value at current time step $t, L_t$ is the level estimate for $t, L_{t-1}$ is the previous level estimate, and $\alpha$ is a smoothing constant.<br>
+This equation, which updates the level of the current time step depending on the prior level estimate, is known as the level update equation.<br>
+The smoothing constant is represented by the $\alpha$ symbol,. The smoothing constant, whose domain is 0 to 1, determines how much of the current level estimate is based on previous values. This is because the level update equation is recursive.</p>
+<h3 id="holts-exponential-smoothing">Holt’s Exponential Smoothing</h3>
+<p>Because it permits the time series data to have a trend component, Holt's exponential smoothing is an improvement above simple exponential smoothing. Seasonal data are still insurmountable for Holt's exponential smoothing.<br>
+A forecast with Holt’s method can be defined as:<br>
+Level update equation :
+$$
+F_{t+k}=L_t+k T_t
+$$
+Where:
+$L_t$ is the level estimate for time $t, k$ is the number of forecasts into the future, and $T_t$ is the trend at time $t$.
+Trend update equation :
+$$
+T_t=\beta\left(L_t-L_{t-1}\right)+(1-\beta) T_{t-1}
+$$
+Where:
+$L_t$ is the level estimate for time $t$ and $T_t$ is the trend at time $t$.
+The alpha smoothing constant from earlier in SES is more or less comparable to the beta smoothing constant, which is the trend equation's own smoothing constant. Beta also has the domain 0 ≤ β ≤ 1, and it dictates how how fast a given trend estimate should be adjusted.</p>
+<h3 id="winters-exponential-smoothing">Winter’s Exponential Smoothing</h3>
+<p>A development of Holt's exponential smoothing, Winter's exponential smoothing now permits the introduction of seasonality. The Holt-Winters method is known as Winter's exponential smoothing.</p>
+
+</body>
+</html>
